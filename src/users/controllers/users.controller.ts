@@ -1,4 +1,14 @@
-import { Body, Controller, Get, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  Res,
+} from '@nestjs/common';
 import { Response } from 'express';
 import { UsersService } from '../services/users.service';
 import { CreateUserDTO, UpdateUserDTO } from '../dto/user.dto';
@@ -20,19 +30,19 @@ export class UsersController {
   }
 
   //method to get a user by sub
-  @Get(':sub')
-  public async getUserBySub(@Param('sub') sub: string) {
-    return await this.usersService.getUserBySub(sub);
+  @Get(':id')
+  public async getUserBySub(@Param('id', ParseIntPipe) id: number) {
+    return await this.usersService.getUserBySub(id);
   }
 
   //method to update a user by sub
-  @Put(':sub')
+  @Put(':id')
   public async updateUserBySub(
     @Res() res: Response,
-    @Param('sub') sub: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() body: UpdateUserDTO,
   ) {
-    await this.usersService.updateUser(sub, body);
+    await this.usersService.updateUser(id, body);
     return res.status(HttpStatus.OK).json({
       message: 'User updated successfully',
     });
