@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, ManyToOne } from 'typeorm';
 import { BaseEntity } from 'src/config/base.entity';
 import { ProductInterface } from 'src/interfaces/products.interface';
 import { Categories } from 'src/constants';
