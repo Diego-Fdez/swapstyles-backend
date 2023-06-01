@@ -1,13 +1,11 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, OneToMany } from 'typeorm';
 import { BaseEntity } from 'src/config/base.entity';
 import { UserInterface } from 'src/interfaces/user.interface';
+import { ProductsEntity } from 'src/products/entities/products.entity';
 
 // database table
 @Entity({ name: 'users' })
 export class UsersEntity extends BaseEntity implements UserInterface {
-  @Column()
-  sub: string;
-
   @Column({ unique: true })
   userName: string;
 
@@ -20,12 +18,15 @@ export class UsersEntity extends BaseEntity implements UserInterface {
   @Column({ nullable: true })
   location: string;
 
-  @Column({ nullable: true })
+  @Column({ default: false })
   isVerified: boolean;
 
-  @Column({ nullable: true })
+  @Column({ default: 0 })
   rating: number;
 
   @Column()
   profilePicture: string;
+
+  @OneToMany(() => ProductsEntity, (product) => product.user)
+  products: ProductsEntity[];
 }
