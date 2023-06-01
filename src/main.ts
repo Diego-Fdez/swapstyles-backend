@@ -4,13 +4,9 @@ import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { CORS } from './constants';
-import { HttpExceptionFilter } from './utils/AllExceptionsFilter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  //use global filters
-  app.useGlobalFilters(new HttpExceptionFilter());
 
   //use morgan
   app.use(morgan('dev'));
