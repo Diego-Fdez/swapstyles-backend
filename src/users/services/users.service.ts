@@ -46,10 +46,11 @@ export class UsersService {
   }
 
   //function to get a user by sub
-  public async getUserBySub(sub: string): Promise<UsersEntity> {
+  public async getUserBySub(id: number): Promise<UsersEntity> {
     try {
       const user = await this.userRepository.findOne({
-        where: { sub: sub },
+        where: { id: id },
+        relations: ['products'],
       });
       if (!user) {
         throw new HttpException('User not found', HttpStatus.NOT_FOUND);
@@ -61,10 +62,10 @@ export class UsersService {
   }
 
   //function to update a user
-  public async updateUser(sub: string, body: UpdateUserDTO): Promise<UsersEntity> {
+  public async updateUser(id: number, body: UpdateUserDTO): Promise<UsersEntity> {
     try {
       //find user by sub and update it
-      const user = await this.userRepository.update({ sub }, body);
+      const user = await this.userRepository.update({ id }, body);
 
       //if no user is found
       if (user.affected === 0) {
