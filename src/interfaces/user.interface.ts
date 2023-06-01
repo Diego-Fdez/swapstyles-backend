@@ -1,5 +1,4 @@
 export interface UserInterface {
-  sub: string;
   userName: string;
   email: string;
   age: number;
