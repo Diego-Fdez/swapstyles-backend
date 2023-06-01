@@ -50,7 +50,7 @@ export class UsersService {
     try {
       const user = await this.userRepository.findOne({
         where: { id: id },
-        relations: ['products'],
+        relations: ['userPreferences', 'products'],
       });
       if (!user) {
         throw new HttpException('User not found', HttpStatus.NOT_FOUND);
