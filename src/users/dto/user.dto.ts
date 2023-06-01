@@ -12,11 +12,6 @@ import {
 export class CreateUserDTO {
   @IsNotEmpty()
   @IsString()
-  @MaxLength(35)
-  sub: string;
-
-  @IsNotEmpty()
-  @IsString()
   @MaxLength(80)
   userName: string;
 
@@ -52,10 +47,6 @@ export class CreateUserDTO {
 }
 
 export class UpdateUserDTO {
-  @IsOptional()
-  @IsEmpty({ message: 'The sub field must have no value when it is sent as default.' })
-  sub: string;
-
   @IsOptional()
   @IsString()
   @MaxLength(80)
