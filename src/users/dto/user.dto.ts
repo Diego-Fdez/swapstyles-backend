@@ -44,6 +44,10 @@ export class CreateUserDTO {
   @IsString()
   @MaxLength(250)
   profilePicture: string;
+
+  @IsOptional()
+  @IsEmpty({ message: 'The field must have no value when it is sent as default.' })
+  isPremium: boolean;
 }
 
 export class UpdateUserDTO {
@@ -76,4 +80,8 @@ export class UpdateUserDTO {
   @IsOptional()
   @IsEmpty({ message: 'the profilePicture field must have no value when it is sent as default.' })
   profilePicture: string;
+
+  @IsOptional()
+  @IsEmpty({ message: 'The field must have no value when it is sent as default.' })
+  isPremium: boolean;
 }

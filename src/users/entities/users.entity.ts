@@ -28,6 +28,9 @@ export class UsersEntity extends BaseEntity implements UserInterface {
   @Column()
   profilePicture: string;
 
+  @Column({ default: false })
+  isPremium: boolean;
+
   @OneToMany(() => ProductsEntity, (product) => product.user)
   products: ProductsEntity[];
 

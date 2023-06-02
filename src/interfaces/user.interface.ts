@@ -6,4 +6,5 @@ export interface UserInterface {
   isVerified: boolean;
   rating: number;
   profilePicture: string;
+  isPremium: boolean;
 }
