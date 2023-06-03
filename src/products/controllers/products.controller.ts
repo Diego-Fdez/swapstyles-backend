@@ -20,7 +20,7 @@ export class ProductsController {
 
   //method to register a product
   @Post()
-  public async registerUser(@Body() body: CreateProductDTO) {
+  public async registerProduct(@Body() body: CreateProductDTO) {
     return await this.productsService.createProduct(body);
   }
 

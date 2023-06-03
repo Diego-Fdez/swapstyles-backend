@@ -1,23 +1,22 @@
 import {
   IsBoolean,
   IsEmpty,
-  IsEnum,
   IsNotEmpty,
   IsNumber,
   IsOptional,
   IsString,
   MaxLength,
 } from 'class-validator';
-import { Categories } from 'src/constants';
 
 export class CreateProductDTO {
   @IsNotEmpty()
   @IsNumber()
   userId: number;
 
-  @IsEnum(Categories)
+  @IsString()
   @IsNotEmpty()
-  category: Categories;
+  @MaxLength(75)
+  category: string;
 
   @IsNotEmpty()
   @IsString()
@@ -74,9 +73,10 @@ export class UpdateProductDTO {
   @IsEmpty({ message: 'The field userId must have no value when it is sent as default.' })
   userId: number;
 
-  @IsEnum(Categories)
+  @IsString()
   @IsOptional()
-  category: Categories;
+  @MaxLength(75)
+  category: string;
 
   @IsOptional()
   @IsString()

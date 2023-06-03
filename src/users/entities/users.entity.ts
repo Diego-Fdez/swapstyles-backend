@@ -7,6 +7,9 @@ import { StylePreferencesEntity } from 'src/style-preferences/entities/style-pre
 // database table
 @Entity({ name: 'users' })
 export class UsersEntity extends BaseEntity implements UserInterface {
+  @Column()
+  sub: string;
+
   @Column({ unique: true })
   userName: string;
 

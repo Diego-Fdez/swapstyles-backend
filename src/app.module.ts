@@ -5,6 +5,9 @@ import { DataSourceConfig } from './config/data.source';
 import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
 import { StylePreferencesModule } from './style-preferences/style-preferences.module';
+import { CategoriesModule } from './categories/categories.module';
+import { ConditionModule } from './condition/condition.module';
+import { ProductImagesModule } from './product-images/product-images.module';
 
 @Module({
   imports: [
@@ -16,6 +19,9 @@ import { StylePreferencesModule } from './style-preferences/style-preferences.mo
     UsersModule,
     ProductsModule,
     StylePreferencesModule,
+    CategoriesModule,
+    ConditionModule,
+    ProductImagesModule,
   ],
 })
 export class AppModule {}

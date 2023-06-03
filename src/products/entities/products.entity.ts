@@ -1,14 +1,14 @@
-import { Entity, Column, ManyToOne } from 'typeorm';
+import { Entity, Column, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
 import { BaseEntity } from 'src/config/base.entity';
 import { ProductInterface } from 'src/interfaces/products.interface';
-import { Categories } from 'src/constants';
 import { UsersEntity } from 'src/users/entities/users.entity';
+import { ProductImagesEntity } from 'src/product-images/entities/productImages.entity';
 
 // database table
 @Entity({ name: 'products' })
 export class ProductsEntity extends BaseEntity implements ProductInterface {
-  @Column({ type: 'enum', enum: Categories })
-  category: Categories;
+  @Column()
+  category: string;
 
   @Column()
   title: string;
@@ -46,6 +46,12 @@ export class ProductsEntity extends BaseEntity implements ProductInterface {
   @Column()
   userId: number;
 
+  //relation with user
   @ManyToOne(() => UsersEntity, (user) => user.products)
   user: UsersEntity;
+
+  //relation with productImages
+  @OneToOne(() => ProductImagesEntity)
+  @JoinColumn()
+  productImages: ProductImagesEntity;
 }

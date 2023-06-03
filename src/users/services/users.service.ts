@@ -1,6 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt';
 import { UsersEntity } from '../entities/users.entity';
 import { CreateUserDTO, UpdateUserDTO } from '../dto/user.dto';
 import { throwHttpException } from 'src/utils/error.manager';
@@ -14,6 +15,9 @@ export class UsersService {
   //function to create a new user
   public async createUser(body: CreateUserDTO): Promise<UsersEntity> {
     try {
+      //hash sub with bcrypt
+      body.sub = await bcrypt.hash(body.sub, +process.env.HASH_SALT);
+
       const userExist = await this.userRepository.findOne({
         where: {
           email: body.email,
